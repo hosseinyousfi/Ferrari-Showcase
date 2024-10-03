@@ -104,7 +104,7 @@ DATABASES = {
         'USER': config("POSTGRES_USER", cast=str, default="postgresql"),
         'PASSWORD': config("POSTGRES_PASSWORD", cast=str, default="postgresql"),
         'HOST': 'db',  #  should match the service name defined in your Docker Compose file
-        'PORT': config("POSTGRES_PORT", cast=int, defualt=5432),
+        'PORT': config("POSTGRES_PORT", cast=int, default=5432),
     }
 }
 
@@ -114,16 +114,16 @@ DATABASES = {
 
 AUTH_PASSWORD_VALIDATORS = [
     {
-        "NAME": "django.contrib.auth.password_validation.UserAttributeSimilarityValidator",
+        'NAME': 'django.contrib.auth.password_validation.UserAttributeSimilarityValidator',
     },
     {
-        "NAME": "django.contrib.auth.password_validation.MinimumLengthValidator",
+        'NAME': 'django.contrib.auth.password_validation.MinimumLengthValidator',
     },
     {
-        "NAME": "django.contrib.auth.password_validation.CommonPasswordValidator",
+        'NAME': 'django.contrib.auth.password_validation.CommonPasswordValidator',
     },
     {
-        "NAME": "django.contrib.auth.password_validation.NumerThisicPasswordValidator",
+        'NAME': 'django.contrib.auth.password_validation.NumericPasswordValidator',
     },
 ]
 
