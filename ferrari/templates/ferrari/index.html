@@ -1,0 +1,68 @@
+{% extends "ferrari/layout.html" %}
+{% load static %}
+
+{% block style %}<link rel="stylesheet" href="{% static 'ferrari/css/style.css' %}">{% endblock style %}
+{% block title %}Home{% endblock title %}
+
+{% block body %}
+
+
+  <div id="carouselExampleDark" class="carousel carousel-dark slide" data-bs-ride="carousel">
+    <div class="carousel-indicators">
+      <button type="button" data-bs-target="#carouselExampleDark" data-bs-slide-to="0" class="active" aria-current="true" aria-label="Slide 1"></button>
+      <button type="button" data-bs-target="#carouselExampleDark" data-bs-slide-to="1" aria-label="Slide 2"></button>
+      <button type="button" data-bs-target="#carouselExampleDark" data-bs-slide-to="2" aria-label="Slide 3"></button>
+    </div>
+    <div class="carousel-inner">
+      <div class="carousel-item active" data-bs-interval="5000">
+        <img src="{% static 'ferrari/Pics/spider.jpg' %}" class="d-block w-100" alt="...">
+        <div class="carousel-caption d-none d-md-block">  
+        <h3 class="title">Start Your Engine</h3>
+        <h6 class="type">Sport cars</h6>
+        </div>
+      </div>
+      <div class="carousel-item" data-bs-interval="5000">
+        <img src="{% static 'ferrari/Pics/modern.jpg' %} " class="d-block w-100" alt="...">
+        <div class="carousel-caption d-none d-md-block">
+        <h3 class="title">Don't miss the bests</h3>
+        <h6 class="type">Future</h6> 
+        </div>
+      </div>
+      <div class="carousel-item" data-bs-interval="5000">
+        <img src="{% static 'ferrari/Pics/racing.jpg' %} " class="d-block w-100" alt="...">
+        <div class="carousel-caption d-none d-md-block">
+          <h3 class="title">Feel the Speed</h3>
+          <h6 class="type">Racing</h6>
+        </div>
+      </div>
+    </div>
+    <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleDark" data-bs-slide="prev">
+      <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+      <span class="visually-hidden">Previous</span>
+    </button>
+    <button class="carousel-control-next" type="button" data-bs-target="#carouselExampleDark" data-bs-slide="next">
+      <span class="carousel-control-next-icon" aria-hidden="true"></span>
+      <span class="visually-hidden">Next</span>
+    </button>
+  </div>
+
+</div>
+
+<div class="container">
+  <div class="row">
+    {% for model in models %}
+    <div class="col-md-4 col-sm-12 model-card">
+            <div class="card" style="height: 110%;">
+              <img src="{{model.car_cover.url}}" alt="{{model.car_model}}" class="card-img">
+              <div class="card__content">
+                <h3 class="card__title">Ferrari {{ model.car_model }}</h3>
+                <p class="card__description">{{ model.model_desciption }}</p>
+              </div>
+              <a href="{% url 'ferrari:cars' model.id %}"><button class="card-button">More info</button></a>
+            </div>
+    </div>
+    {% endfor %}
+  </div> 
+</div>
+
+{% endblock body %}

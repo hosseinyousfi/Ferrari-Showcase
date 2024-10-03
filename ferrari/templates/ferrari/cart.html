@@ -1,0 +1,142 @@
+{% extends "ferrari/layout.html" %}
+{% load static %}
+{% load humanize %}
+
+{% block style %}
+<link rel="stylesheet" href="{% static 'ferrari/css/style.css' %}">
+<link rel="stylesheet" href="{% static 'ferrari/css/cart.css' %}">
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+{% endblock style %}
+{% block title %}Shopping Cart{% endblock title %}
+
+
+{% block body %}
+</div>
+<div class="cart">
+{% if buy %}<h1>{{car}}</h1>{% else %}<h1>Shopping Cart</h1>{% endif %}
+
+<div class="shopping cart ">
+
+  <div class="column-labels">
+    <label class="product-image">Image</label>
+    <label class="product-details">Product</label>
+    <label class="product-price">Price</label>
+    <label class="product-quantity">Quantity</label>
+    <label class="product-removal">Remove</label>
+    <label class="product-line-price">Total</label>
+  </div>
+
+{% if buy %}
+  <div class="product">
+    <div class="product-image">
+      <img src="{{car.backphoto.url}}" id="image">
+    </div>
+    <div class="product-details">
+      <div class="product-title">Model :{{car.model_name}}</div>
+      <p class="product-description">{{car.description}}</p>
+    </div>
+    <div class="product-price">{{ car.price }}</div>
+    <div class="product-quantity">
+      <input type="number" value="1" min="1">
+    </div>
+    <div class="product-removal">
+      <a href="{% url 'ferrari:remove' car.id %}"><button class="remove-product">
+        Remove
+      </button></a>
+    </div>
+    <div class="product-line-price">{{ car.price}}</div>
+  </div>
+{% else %}
+{% for product in products %}
+  <div class="product">
+    <div class="product-image">
+      <img src="{{product.backphoto.url}}" id="image">
+    </div>
+    <div class="product-details">
+      <div class="product-title">Model :{{product.model_name}}</div>
+      <p class="product-description">{{product.description}}</p>
+    </div>
+    <div class="product-price">{{ product.price }}</div>
+    <div class="product-quantity">
+      <input type="number" value="1" min="1">
+    </div>
+    <div class="product-removal">
+      <a href="{% url 'ferrari:remove' product.id %}"><button class="remove-product">
+        Remove
+      </button></a>
+    </div>
+    <div class="product-line-price">{{ product.price}}</div>
+  </div>
+  {% empty %}
+  <div class="empty">
+  <img src="{% static 'ferrari/Pics/empty.png' %}" class="empty-image"><br>
+  <h3 class="empty-title">Your Cart is Only Full of Air</h3>
+  <div>
+    <style>
+      .totals {
+        display: none;
+      }
+      .checkout {
+        display:none;
+      }
+    </style>
+  {% endfor %}
+{% endif %}
+  <div class="totals">
+    <div class="totals-item">
+      <label>Subtotal</label>
+      <div class="totals-value" id="cart-subtotal"></div>
+    </div>
+    <div class="totals-item">
+      <label>Tax (5%)</label>
+      <div class="totals-value" id="cart-tax"></div>
+    </div>
+    <div class="totals-item">
+      <label>Shipping</label>
+      <div class="totals-value" id="cart-shipping">1000.00</div>
+    </div>
+    <div class="totals-item totals-item-total">
+      <label>Grand Total</label>
+      <div class="totals-value" id="cart-total"></div>
+    </div>
+  </div>
+      <button class="checkout" type="submit">Checkout</button>
+</div>
+</div>
+
+<script>
+  const nav = document.querySelector('.nav')
+  const menu = document.querySelector('.menu');
+  const banner = document.querySelector('.banner.home');
+  banner.style.display = 'none';
+  banner.style.minHeight = '0';
+  menu.addEventListener('click', () => {
+      if (banner.style.display === 'block') {
+          banner.style.display = 'none';
+          banner.style.transition = 'transform 1s'
+      } else {
+          banner.style.display = 'block';
+          banner.style.transition = 'transform 1s'
+      }
+      menu.classList.toggle('active');
+      nav.classList.toggle('active');
+  })
+  const checkout = document.querySelector(".checkout");
+  checkout.addEventListener('click', () => {
+    Swal.fire({
+      title: "This appliction is just for CS50 capston project and you can't really buy ferrari from us :D",
+      width: 800,
+      padding: "3em",
+      color: "#a70000",
+      background: "#fff ",
+      backdrop: `
+        #a7000075
+        left top
+        no-repeat
+      `
+    });
+  })
+</script>
+<script src="{% static 'ferrari/JS/cart.js' %}"></script>
+
+{% endblock body %}

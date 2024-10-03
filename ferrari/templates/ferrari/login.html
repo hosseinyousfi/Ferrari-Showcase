@@ -1,0 +1,158 @@
+{% extends "ferrari/layout.html" %}
+{% load static %}
+
+{% block style %}
+<link rel="stylesheet" href="{% static 'ferrari/css/style.css' %}">
+<link rel="stylesheet" href="{% static 'ferrari/css/login.css' %}">
+{% endblock style %}
+
+{% block title %}Welcome! {% endblock title %}
+
+{% block body %}
+ <!--For laptop-->
+    {% load socialaccount %}
+</div>
+    <div class="container-login" id="container">
+        <div class="form-container sign-up-container">
+            <form action="{% url 'ferrari:register' %}" method="POST">
+                {% csrf_token %}
+                <h1>Create Account</h1>
+                <div class="social-container">
+                    <a href="{% provider_login_url 'google' %}?next=/" class="social"><i class="fa-brands fa-google"></i></a>
+                </div>
+                <span>or use your email for registration</span>
+                <div class="infield">
+                    <input type="text" placeholder="Username" name="username" required />
+                    <label></label>
+                </div>
+                <div class="infield">
+                    <input type="email" placeholder="Email" name="email" required />
+                    <label></label>
+                </div>
+                <div class="infield">
+                    <input type="password" placeholder="Password" name="password" required />
+                    <label></label>
+                </div>
+                <div class="infield">
+                    <input type="password" placeholder="Password Confirmation" name="confirmation" required />
+                    <label></label>
+                </div>
+                <button type="submit">Sign Up</button>
+            </form>
+        </div>
+        <div class="form-container sign-in-container">
+            <form action="{% url 'ferrari:login' %}" method="POST">
+                {% csrf_token %}
+                <h1>Sign in</h1>
+                <div class="social-container">
+                    <a href="{% provider_login_url 'google' %}?next=/" class="social"><i class="fa-brands fa-google"></i></a>
+                </div>
+                <span>or use your account</span>
+                <div class="infield">
+                    <input type="text" placeholder="Username" name="username" required />
+                    <label></label>
+                </div>
+                <div class="infield">
+                    <input type="password" placeholder="Password" name="password" required />
+                    <label></label>
+                </div>
+                <button type="submit">Sign In</button>
+                <a href="{% url 'ferrari:forgot-password' %}" class="forget">Forgot password?</a>
+            </form>
+        </div>
+        <div class="overlay-container" id="overlayCon">
+            <div class="overlay">
+                <div class="overlay-panel overlay-left">
+                    <h1 class="welcome">Welcome Back!</h1>
+                    <p>To keep connected with us please login with your personal info</p>
+                    <button>Sign In</button>
+                </div>
+                <div class="overlay-panel overlay-right">
+                    <h1>Hello, Friend!</h1>
+                    <p>Enter your personal details and start journey with us</p>
+                    <button>Sign Up</button>
+                </div>
+            </div>
+            <button id="overlayBtn"></button>
+        </div>
+    </div>
+</div>
+<!--login mobile-->
+    <div class="container-mobile">
+        <input type="checkbox" id="check">
+        <div class="login-form login">
+            <div class="header-login">Login</div>
+            <form action="{% url 'ferrari:login' %}" method="POST">
+                {% csrf_token %}
+                <input type="text" placeholder="Username" name="username" required />
+                <input type="password" placeholder="Password" name="password" required />
+                <a href="{% url 'ferrari:forgot-password' %}">Forgot password?</a>
+                <input type="submit" class="button" value="Login">
+            </form>
+            <div class="signup">
+               <span class="signup">Don't have an account? </span>
+               <label for="check" class="label">Signup</label>
+            </div>
+        </div>
+        
+        <div class="login-form register">
+            <div class="header-login">SignUp</div>
+            <form action="{% url 'ferrari:register' %}" method="POST">
+                {% csrf_token %}
+                <input type="text" placeholder="Username" name="username" required />
+                <input type="email" placeholder="Email" name="email" required />
+                <input type="password" placeholder="Password" name="password" required />
+                <input type="password" placeholder="Password Confirmation" name="confirmation" required />
+                <input type="submit" class="button" value="Login">
+            </form>
+            <div class="signup">
+               <span class="signup">Already have an account? </span> 
+               <label for="check" class="label-login">Login</label>
+            </div>
+        </div>
+    </div>
+
+    
+
+
+</div>
+{% if messages %}
+    {% for message in messages %}
+        {% if message.tags == 'success' %}
+        <script>
+            Swal.fire({
+                title: "Password Reset",
+                text: "{{message}}",
+                icon: "success"
+                });
+            </script>
+        {% elif message.tags == 'error' %}
+            <script>
+            Swal.fire({
+                title: "Error!",
+                text: "{{message}}",
+                icon: "error"
+                });
+            </script>
+        {% endif %}
+    {% endfor %}
+{% endif %}
+<script>
+    const nav = document.querySelector('.nav')
+    const menu = document.querySelector('.menu');
+    const banner = document.querySelector('.banner.home');
+    banner.style.display = 'none';
+    banner.style.minHeight = '0';
+    menu.addEventListener('click', () => {
+        if (banner.style.display === 'block') {
+            banner.style.display = 'none';
+        } else {
+            banner.style.display = 'block';
+        }
+        menu.classList.toggle('active');
+        nav.classList.toggle('active');
+    })
+</script>
+<script src="{% static 'ferrari/JS/login.js' %}"></script>
+
+{% endblock body %}
