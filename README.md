@@ -140,6 +140,8 @@ When you’re finished, stop the services with:
 
 docker compose down
 
+All environment variables are stored in the envs/.env file.
+Update this file as needed to change configurations for the local or Docker setup.
 
 By including both sets of instructions, users can choose their preferred method for running the application. Adjust any paths, environment variables, or service names as needed to match your project’s specifics.
 
