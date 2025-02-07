@@ -96,50 +96,52 @@ Customizes the Django admin interface using the Jazzmin package to enhance the a
 
 ## How to Run the Application
 
-To run the application locally, follow these steps:
+Running with Docker Compose
 
-1. **Clone the repository:**
-   ```bash
-   git clone https://github.com/me50/hosseinyousfi.git
+If you prefer to use Docker Compose (as with your Ferrari projects), follow these steps:
+	1.	Clone the repository:
 
-
-2. **Navigate into the Project Directory:**
-   Change into the project directory:
-   ```bash
-   cd capstone
-   ```
+git clone https://github.com/me50/hosseinyousfi.git
 
 
-3. **Install Required Dependencies:**
-   Install the required Python packages listed in requirements.txt:
+	2.	Navigate into the Project Directory:
 
-   ```bash
-   pip install -r requirements.txt
-   ```
+cd capstone
 
 
-4. Set Up the Database
-   Apply database migrations to set up the necessary database schema:
+	3.	Ensure You Have Docker & Docker Compose Installed
+Verify that both Docker and Docker Compose are installed on your system.
+	4.	Create (or Review) the docker-compose.yml File
 
-   ```bash
-   python manage.py makemigrations
-   python manage.py migrate
-   ```
+	5.	Build and Start the Containers:
+From the project root directory, run:
 
-5. **Create a Superuser (Optional):**
-   To access the Django admin panel, create a superuser account:
-   Follow the prompts to enter your desired username, email, and password.
+docker compose up --build
 
-   ```bash
-   python manage.py createsuperuser
-   ```
-   
-6. **Run the Django Development Server:**
-   Start the Django development server:
+This command builds the Docker images (if necessary) and starts both the Django application and the database container.
 
-   ```bash
-   python manage.py runserver
-   ```
+	6.	Set Up the Database
+In a new terminal window, run the migration commands inside the running web container:
+
+docker compose exec web python manage.py makemigrations
+docker compose exec web python manage.py migrate
+
+
+	7.	Create a Superuser (Optional):
+To create a Django admin superuser:
+
+docker compose exec web python manage.py createsuperuser
+
+
+	8.	Access the Application
+Your application will be available at http://localhost:8000.
+	9.	Shut Down the Containers
+When you’re finished, stop the services with:
+
+docker compose down
+
+
+By including both sets of instructions, users can choose their preferred method for running the application. Adjust any paths, environment variables, or service names as needed to match your project’s specifics.
 
 7. **Access the Application:**
    Open your web browser and navigate to http://127.0.0.1:8000/ to view the application. You can also access the Django admin panel at http://127.0.0.1:8000/admin/ using the superuser account created earlier.
