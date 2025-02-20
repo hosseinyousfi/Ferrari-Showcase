@@ -98,62 +98,42 @@ Customizes the Django admin interface using the Jazzmin package to enhance the a
 
 Running with Docker Compose
 
-If you prefer to use Docker Compose (as with your Ferrari projects), follow these steps:
-	1.	Clone the repository:
+1.	Clone the repository:
 
 git clone https://github.com/me50/hosseinyousfi.git
-
-
-	2.	Navigate into the Project Directory:
-
+```
 cd capstone
+```
 
-
-	3.	Ensure You Have Docker & Docker Compose Installed
-Verify that both Docker and Docker Compose are installed on your system.
-	4.	Create (or Review) the docker-compose.yml File
-
-	5.	Build and Start the Containers:
+	
+3. Verify that both Docker and Docker Compose are installed on your system.
+2. Review the docker-compose.yml File
+4.	Build and Start the Containers:
 From the project root directory, run:
-
+```
 docker compose up --build
-
+```
 This command builds the Docker images (if necessary) and starts both the Django application and the database container.
 
-	6.	Set Up the Database
-In a new terminal window, run the migration commands inside the running web container:
 
-docker compose exec web python manage.py makemigrations
-docker compose exec web python manage.py migrate
-
-
-	7.	Create a Superuser (Optional):
+6. Create a Superuser (Optional):
 To create a Django admin superuser:
-
+```
 docker compose exec web python manage.py createsuperuser
+```
 
-
-	8.	Access the Application
+7. Access the Application
 Your application will be available at http://localhost:8000.
 	9.	Shut Down the Containers
 When you’re finished, stop the services with:
-
+```
 docker compose down
+```
 
 All environment variables are stored in the envs/.env file.
 Update this file as needed to change configurations for the local or Docker setup.
 
-By including both sets of instructions, users can choose their preferred method for running the application. Adjust any paths, environment variables, or service names as needed to match your project’s specifics.
-
-7. **Access the Application:**
-   Open your web browser and navigate to http://127.0.0.1:8000/ to view the application. You can also access the Django admin panel at http://127.0.0.1:8000/admin/ using the superuser account created earlier.
-
-8. **Additional Configuration (If Necessary):**
-   If you need to configure additional settings such as environment variables or external services, refer to the settings.py file and adjust accordingly. Ensure that all required services (e.g., email server for password reset) are properly set up.
-   If you want to change the email for reset password you should use your app password of your account.
-
-9. **Stopping the Server**
-   To stop the development server, press Ctrl+C in the terminal where the server is running.
+By including both sets of instructions, users can choose their preferred method for running the application. Adjust any paths, environment variables, or service names as needed to match the project’s specifics.
 
 ## Technologies Used
 - Django (Backend framework)
