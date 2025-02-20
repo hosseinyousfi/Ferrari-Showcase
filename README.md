@@ -98,7 +98,7 @@ Customizes the Django admin interface using the Jazzmin package to enhance the a
 
 Running with Docker Compose
 
-###1.	Clone the repository:
+### 1.	Clone the repository:
 
 git clone https://github.com/me50/hosseinyousfi.git
 ```
@@ -106,9 +106,9 @@ cd capstone
 ```
 
 	
-###3. Verify that both Docker and Docker Compose are installed on your system.
-###2. Review the docker-compose.yml File
-###4.	Build and Start the Containers:
+### 2. Verify that both Docker and Docker Compose are installed on your system.
+### 3. Review the docker-compose.yml File
+### 4.	Build and Start the Containers:
 From the project root directory, run:
 ```
 docker compose up --build
@@ -116,15 +116,15 @@ docker compose up --build
 This command builds the Docker images (if necessary) and starts both the Django application and the database container.
 
 
-###5. Create a Superuser (Optional):
+### 5. Create a Superuser (Optional):
 To create a Django admin superuser:
 ```
 docker compose exec web python manage.py createsuperuser
 ```
 
-###6. Access the Application
+### 6. Access the Application
 Your application will be available at http://localhost:8000.
-###7. Shut Down the Containers
+### 7. Shut Down the Containers
 When you’re finished, stop the services with:
 ```
 docker compose down
