@@ -106,15 +106,19 @@ cd capstone
 ```
 
 	
-### 2. Verify that both Docker and Docker Compose are installed on your system.
-### 3. Review the docker-compose.yml File
+### 2. Ensure Docker & Docker Compose Are Installed
+
+Verify that both Docker and Docker Compose are installed on your system.
+
+### 3. Review Configuration
+
+Check the docker-compose.yml file and update environment variables in envs/.env if necessary.
 ### 4.	Build and Start the Containers:
 From the project root directory, run:
 ```
-docker compose up --build
+docker compose up --build -d
 ```
 This command builds the Docker images (if necessary) and starts both the Django application and the database container.
-
 
 ### 5. Create a Superuser (Optional):
 To create a Django admin superuser:
@@ -123,7 +127,8 @@ docker compose exec web python manage.py createsuperuser
 ```
 
 ### 6. Access the Application
-Your application will be available at http://localhost:8000.
+•	Visit http://localhost:8000 in your browser.
+	•	Admin panel: http://localhost:8000/admin
 ### 7. Shut Down the Containers
 When you’re finished, stop the services with:
 ```
