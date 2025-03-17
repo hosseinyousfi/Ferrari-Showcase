@@ -8,7 +8,7 @@ from django.db import models
 class Ferrari_model(models.Model):
     car_model = models.CharField(max_length=64)
     model_desciption = models.CharField(max_length=300, default="Ferrari")
-    car_cover = models.ImageField(upload_to="covers/")
+    car_cover = models.ImageField(upload_to="models/")
 
     def __str__(self):
         return self.car_model
